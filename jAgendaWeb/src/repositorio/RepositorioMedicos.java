@@ -24,6 +24,10 @@ public class RepositorioMedicos {
 		this.listaMedicos = listaMedicos;
 	}
 	
+	public void inserirMedico(Medico medico) {
+		listaMedicos.add(medico);
+	}
+	
 	@PostConstruct
 	public void preCarregar() {
 		listaMedicos = new ArrayList<Medico>();
