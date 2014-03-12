@@ -56,6 +56,13 @@ public class Consulta implements Serializable {
 		this.cancelado = cancelado;
 	}
 	
+	public String getStatus() {
+		if (cancelado)
+			return "Cancelado";
+		else
+			return "Confirmado";
+	}
+	
 	
 }
 

@@ -7,8 +7,8 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
-	<classpathentry kind="lib" path="C:/Users/Deco/Desktop/primefaces-4.0.jar"/>
 	<classpathentry kind="lib" path="C:/jboss-as-7.1.1.Final/bin/client/jboss-client.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jst.server.core.container/org.jboss.ide.eclipse.as.core.server.runtime.runtimeTarget/jboss-as-7.1.1.Final Runtime"/>
+	<classpathentry kind="lib" path="C:/Users/Deco/Documents/primefaces-4.0.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

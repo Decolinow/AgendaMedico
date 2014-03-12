@@ -1,5 +1,6 @@
 package managedbeans;
 
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -11,12 +12,15 @@ import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
+import org.primefaces.*;
+
 import modelo.Consulta;
 import modelo.Medico;
 import repositorio.RepositorioConsultas;
 import repositorio.RepositorioMedicos;
 
 @ManagedBean
+@ViewScoped
 public class ListarMedicoMB {
 
 	@EJB 
@@ -30,7 +34,7 @@ public class ListarMedicoMB {
 	public String nomeCliente;
 	public String planoSaude;
 	public Date data;
-	public String hora;
+	public Date hora;
 
 	public String resultado;
 	public String getResultado() {
@@ -77,16 +81,21 @@ public class ListarMedicoMB {
 	public Date getData() {
 		return data;
 	}
+	
+	public String getDataExtenso() {
+		DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+		return df.format(this.data);
+	}
 
 	public void setData(Date data) {
 		this.data = data;
 	}
 
-	public String getHora() {
+	public Date getHora() {
 		return hora;
 	}
 
-	public void setHora(String hora) {
+	public void setHora(Date hora) {
 		this.hora = hora;
 	}	
 	
@@ -94,14 +103,17 @@ public class ListarMedicoMB {
 		this.medicoEscolhido = medico;
 	}
 	
-	public void selecionarData() {
-		
+	public void selecionarData(String ads) {
+		if (this.data == null) {
+			this.data = new Date();
+		}
 	}
 	
 	public String confirmarConsulta() {
 		SimpleDateFormat sdfdata = new SimpleDateFormat("dd-MM-yyyy");
-		SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy hh");
-		String dateInString = sdfdata.format(data) + " " + getHora();
+		SimpleDateFormat sdfhora = new SimpleDateFormat("HH");
+		SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy HH");
+		String dateInString = sdfdata.format(data) + " " + sdfhora.format(getHora());
 		Date dataComparar = null;
 		try {
 			dataComparar = sdf.parse(dateInString);
@@ -120,7 +132,7 @@ public class ListarMedicoMB {
 		
 		if (podeSeguir) {
 			this.resultado = "";
-			Consulta ncon = new Consulta(getNomeCliente(), getPlanoSaude(), getMedicoEscolhido(), getData(), false);
+			Consulta ncon = new Consulta(getNomeCliente(), getPlanoSaude(), getMedicoEscolhido(), dataComparar, false);
 			repositorioConsultas.inserir(ncon);
 			return "sucesso.xhtml";
 		}
