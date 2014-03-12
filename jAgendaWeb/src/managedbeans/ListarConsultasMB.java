@@ -34,5 +34,10 @@ public class ListarConsultasMB {
 	public void cancelarConsulta(Consulta consulta) {
 		consulta.setCancelado(true);
 	}
+	
+	public void excluirConsulta(Consulta consulta) {
+		repositorioConsultas.getListaConsultas().remove(consulta);
+		init();
+	}
 
 }

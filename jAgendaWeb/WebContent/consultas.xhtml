@@ -9,7 +9,7 @@
 </h:head> 
 <h:body> 
 
-	<a href='consultas.xhtml'>Agendar consulta</a>
+	<a href='principal.xhtml'>Agendar consulta</a>
 	
 	<h:form>
 	<h:panelGroup>
@@ -24,7 +24,10 @@
 				Agendado para: <h:outputText value="#{consulta.data}" />
 				<br />
 				Status: <h:outputText value="#{consulta.status}" />
-				<h:commandButton action="#{listarMedicoMB.selecionarMedico(medico)}" value="Selecionar" />
+			</h:column>
+			<h:column>
+				<h:commandButton rendered="#{!consulta.cancelado}" action="#{listarConsultasMB.cancelarConsulta(consulta)}" value="Cancelar" />
+				<h:commandButton rendered="#{consulta.cancelado}" action="#{listarConsultasMB.excluirConsulta(consulta)}" value="Excluir" />
 			</h:column>
 		</h:dataTable>
 	</h:panelGroup>

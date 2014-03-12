@@ -125,7 +125,7 @@ public class ListarMedicoMB {
 		boolean podeSeguir = true;
 		List<Consulta> consultas = repositorioConsultas.getConsultasMedico(medicoEscolhido);
 		for (Consulta consulta : consultas) {
-			if (consulta.getData() == dataComparar){
+			if (consulta.getData().equals(dataComparar)){
 				podeSeguir = false;
 			}
 		}

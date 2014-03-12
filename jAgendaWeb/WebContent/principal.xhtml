@@ -9,6 +9,12 @@
 </h:head> 
 <h:body> 
 
+	<h:panelGroup rendered="#{logarMB.logado == false}">
+		<script type="text/javascript">
+			window.location = "index.xhtml";
+		</script>
+	</h:panelGroup>
+
 	<a href='consultas.xhtml'>Ver consultas agendadas</a>
 	
 	<h:form>
